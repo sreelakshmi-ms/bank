@@ -16,10 +16,10 @@ export class LoginComponent {
 
   ngOnInit(): void {
   }
-    login(a:any,b:any){
+    login(){
       // alert("login clicked")
-      this.acno=a.value
-      this.psw=b.value
+      // this.acno=a.value
+      // this.psw=b.value
       console.log(this.acno);
       console.log(this.psw);
       
