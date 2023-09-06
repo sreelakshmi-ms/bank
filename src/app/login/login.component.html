@@ -10,13 +10,13 @@
 
           <div class="form-outline">
             <h1 class="text-center mb-5">Log In</h1>
-            <input (change)="acnoChange($event)" type="text" id="acno" name="acno" class="form-control form-control-lg"
+            <input #acno type="text" id="acno" name="acno" class="form-control form-control-lg"
               [placeholder]="data2" />
           </div>
 
           <!-- Password input -->
           <div class="form-outline">
-            <input (change)="passChange($event)" type="password" id="pwd" name="pwd" class="form-control form-control-lg mt-5"
+            <input #psw type="password" id="pwd" name="pwd" class="form-control form-control-lg mt-5"
               placeholder="Enter password" />
           </div>
 
@@ -32,7 +32,7 @@
           </div>
 
           <div class="text-center text-lg-start mt-4 pt-2">
-            <button (click)="login()" type="submit" class="btn btn-lg text-white"
+            <button (click)="login(acno,psw)" type="submit" class="btn btn-lg text-white"
               style="padding-left: 2.5rem; padding-right: 2.5rem;background-color: cadetblue;">Login</button>
             <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
                 class="link-danger">Register</a></p>

@@ -9,13 +9,21 @@ import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
 export class LoginComponent {
   data="happy banking"
   data2="Enter account no."
+  acno:string=""
+  psw:string=""
 
   constructor() { }
 
   ngOnInit(): void {
   }
-    login(){
-      alert("login clicked")
+    login(a:any,b:any){
+      // alert("login clicked")
+      this.acno=a.value
+      this.psw=b.value
+      console.log(this.acno);
+      console.log(this.psw);
+      
+      
     }
     acnoChange(event:any){
       console.log(event.target.value);
