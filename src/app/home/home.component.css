@@ -1,0 +1,30 @@
+img{
+    background-size:contain;
+    width: 80%;
+    margin-top: 100px;
+}
+.navbar{
+    background-color:skyblue;
+}
+a{
+    color: white;
+}
+a:hover{
+    color:cadetblue;
+}
+i{
+    color: white;
+}
+span{
+    color:cornflowerblue
+}
+i:hover{
+    color: cadetblue;
+}
+.dropdown-item{
+    color: skyblue;
+}
+.dropdown-item:hover{
+    color: white;
+    background-color: skyblue;
+}
