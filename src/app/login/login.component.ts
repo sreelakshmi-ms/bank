@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
 
 @Component({
@@ -12,7 +13,7 @@ export class LoginComponent {
   acno:string=""
   psw:string=""
 
-  constructor() { }
+  constructor(private rout:Router) { }
 
   ngOnInit(): void {
   }
@@ -22,6 +23,7 @@ export class LoginComponent {
       // this.psw=b.value
       console.log(this.acno);
       console.log(this.psw);
+      this.rout.navigateByUrl("home")
       
       
     }
