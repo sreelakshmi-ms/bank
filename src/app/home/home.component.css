@@ -4,27 +4,53 @@ img{
     margin-top: 100px;
 }
 .navbar{
-    background-color:skyblue;
+    background-color:yellowgreen;
 }
 a{
     color: white;
 }
 a:hover{
-    color:cadetblue;
+    color:cornflowerblue;
 }
 i{
-    color: white;
-}
-span{
-    color:cornflowerblue
+    color:white
 }
 i:hover{
-    color: cadetblue;
+    color: cornflowerblue;
+}
+span{
+    color:orange
 }
 .dropdown-item{
-    color: skyblue;
+    color:yellowgreen;
 }
 .dropdown-item:hover{
     color: white;
-    background-color: skyblue;
+    background-color:yellowgreen;
+}
+/* .i1{
+    color:yellowgreen;
+}
+.i1:hover{
+    color: white;
+    background-color: dodgerblue;
+}
+ */
+.s1{
+    color: green;
+}
+.s2{
+    color: red;
+}
+
+.c2{
+    /* visibility: hidden; */
+    display: none;
+}
+#mtbutton{
+    background-color:yellowgreen;
+    color: white;
+}
+#mtbutton:hover{
+    background-color: cornflowerblue;
 }

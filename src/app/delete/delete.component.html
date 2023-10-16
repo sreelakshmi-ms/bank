@@ -1,0 +1,7 @@
+<div *ngIf="data" class="container w-50">
+<div id="example1" class="container mt-3 p-3 text-center" style="background-color:rgba(0, 0, 0, 0.099);border-radius: 25px;">
+        <h5>Are You Sure! <br> Do You Want to Delete This Account {{data}} ?</h5>
+        <button (click)="deleteAcc()" class="btn btn-danger px-5 m-2">Yes</button>
+        <button (click)="cancel()" class="btn btn-primary px-5 m-2">No</button>
+    
+</div></div>

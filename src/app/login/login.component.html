@@ -2,39 +2,46 @@
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-9 col-lg-6 col-xl-5">
-        <img src="https://i.postimg.cc/MTdY8K13/bankimg.png"
+        <img src="https://i.postimg.cc/wxwzKfBS/309-3099575-finance-banking-vector-removebg-preview.png"
           class="img-fluid" alt="Sample image">
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" id="f1">
-        <form>
+        <form (ngSubmit)="login()" [formGroup]="loginForm">
 
           <div class="form-outline">
             <h1 class="text-center mb-5">Log In</h1>
-            <input [(ngModel)]="acno" type="text" id="acno" name="acno" class="form-control form-control-lg"
-              [placeholder]="data2" />
+            <input formControlName="acno" type="text" id="acno" name="acno" class="form-control form-control-lg"
+              placeholder="Enter account number" />
+          </div>
+          <div *ngIf="this.loginForm.get('acno')?.errors && this.loginForm.get('acno')?.touched">
+            <p class="text-danger text-center">Accept only numbers</p>
           </div>
 
           <!-- Password input -->
           <div class="form-outline">
-            <input [(ngModel)]="psw" type="password" id="pwd" name="pwd" class="form-control form-control-lg mt-5"
+            <input formControlName="psw" type="password" id="pwd" name="pwd" class="form-control form-control-lg mt-5"
               placeholder="Enter password" />
           </div>
+          <div *ngIf="this.loginForm.get('psw')?.errors && this.loginForm.get('psw')?.touched">
+            <p class="text-danger text-center">Accept only numbers</p>
+          </div>
+
 
           <div class="d-flex justify-content-between align-items-center">
-            <!-- Checkbox -->
+            <!-- Checkbox
             <div class="form-check m-4 mb-0">
               <input class="form-check-input me-3" type="checkbox" value="" id="form2Example3" />
               <label class="form-check-label" for="form2Example3">
                 Remember me
               </label>
-            </div>
-            <a href="#!" class="text-body m-4 mb-0">Forgot password?</a>
+            </div> -->
           </div>
 
           <div class="text-center text-lg-start mt-4 pt-2">
-            <button (click)="login()" type="submit" class="btn btn-lg text-white"
-              style="padding-left: 2.5rem; padding-right: 2.5rem;background-color: cadetblue;">Login</button>
-            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a routerLink="signup"
+              <button type="submit" class="btn btn-lg text-white"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;background-color: cornflowerblue;width:100%">Login</button>
+
+            <p class="small fw-bold mt-3 pt-1 mb-0 text-center">Don't have an account? <a routerLink="signup"
                 class="link-danger">Register</a></p>
           </div>
 

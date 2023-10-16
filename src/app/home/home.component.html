@@ -5,27 +5,29 @@
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav me-auto ms-5">
             </ul>
             <ul class="navbar-nav me-5 mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link text-white" aria-current="page" href="#">Balance Check</a>
+                <li (click)="getbalance()" class="nav-item">
+                    <a class="nav-link" aria-current="page" data-bs-toggle="modal" data-bs-target="#exampleModal" role="button">Balance Check</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Money Transfer</a>
+                    <a class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" role="button"
+                    aria-controls="offcanvasExample">Money Transfer</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Account Statements</a>
+                    <a class="nav-link" routerLink="/history">Account Statements</a>
                 </li>
                 <li class="nav-item dropdown">
                     <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-user"></i>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">View Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Delete Account</a></li>
-                        <li><a class="dropdown-item" href="#">Logout <i class="fa-solid fa-right-from-bracket"></i></a>
+                        <li (click)="getProfile()"><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal1">View Profile</a></li>
+                        <li (click)="deleteActive()"><a class="dropdown-item">Delete Account</a></li>
+                        <li (click)="logout()"><a class="dropdown-item">Logout <i class="fa-solid fa-right-from-bracket" style="color: yellowgreen;"></i></a>
                         </li>
                     </ul>
                 </li>
@@ -34,32 +36,126 @@
     </div>
 </nav>
 <div class="container-fluid" id="hbody">
+    <app-delete [data]="dAcno" (onCancel)="cancelp()" (onDelete)="yesDelete($event)"></app-delete>
+
     <div class="row">
+
         <div class="col-lg-7 col-md-12">
+
             <div class="d1" class="text-center pt-5 m-5">
-                <h1>{{sdata}}</h1>
-                <h1 class="pt-3 pb-3">Welcome To <span>ICICI Net Banking</span></h1>
-                <h3 class="pt-2">Happy Banking With Us!</h3>
-                <p class="mt-4 pt-4 p-5">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit sapiente
-                    mollitia
-                    sed
-                    earum fuga eaque. Minus suscipit atque culpa commodi temporibus dolore, similique quae, omnis
-                    laborum,
-                    ad nostrum cum sunt!
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam vel eius tempore, commodi alias
-                    expedita consectetur possimus, accusamus sed, laudantium quam architecto explicabo laboriosam? Ab
-                    provident dicta a officiis earum!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas quidem, enim nesciunt autem ipsum
-                    sunt sapiente aspernatur eius neque, facilis nobis commodi provident, facere sequi harum. Vero
-                    voluptas deserunt et.
+                <h2 class="pt-1 pb-1" style="color:yellowgreen">Hi {{name}}</h2>
+                <h1 class="pt-3 pb-3"  style="color: cornflowerblue;">Welcome To <span>ICICI Net Banking</span></h1>
+                <h3 class="pt-2" style="color: cornflowerblue;">Happy Banking With Us!</h3>
+                <p class="mt-4 pt-4 p-5">Manage your finances conveniently and securely with ICICI Bank Internet Banking, right from the comfort of your home or your office. Getting started with our  Internet Banking portal is simple. All you need is your user ID and password to use our internet banking services.<br>At ICICI Bank, we take great care to safeguard the assets of our customers. We believe in helping our customers to manage and protect their money.
+
+                    ICICI Bank is committed to provide a secure online experience that protects your confidential information. Our employees are trained on security policies and procedures and work diligently to protect the integrity of customer's (we should be consistent with the use of YOU or CUSTOMER) information.
+                    
+                    We use industry-accepted security practices, including firewalls and encryption. These controls allow us to properly authenticate your identity when you access our online services and help to protect the information as it travels over the Internet between your computer and ICICI Bank.
                 </p>
             </div>
 
         </div>
-        <div class="col-lg-5 col-md-12">
+        <div [ngClass]="dAcno?'c2':''" class="col-lg-5 col-md-12">
             <div id="d2" class="m-5">
-                <img src="https://i.postimg.cc/yN58PYX8/a095b5c25cf1851f6169644a10f7e863.png" class="m-4" alt="">
+                <img src="https://i.postimg.cc/431mG0Mf/a29d290535c8a5fd55f67631c7e454f1-1.jpg" class="m-4" alt="">
             </div>
         </div>
     </div>
 </div>
+
+
+
+<!--BalanceCheck  Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content w-75">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4>Hello <span style="color: yellowgreen;">{{name}}</span></h4>
+                <div class="text-center">
+                    <img src="https://i.postimg.cc/wvrBZVm2/bal.png" alt="" srcset="" class="w-50">
+                    <p>The Current Available Balance in <br> Account Number
+                        <strong style="color: yellowgreen;">{{acno}}</strong>
+                    </p>
+                    <h4><span style="color: yellowgreen;">Rs.{{balance}}</span> Only</h4>
+                </div>
+
+            </div>
+            <div class="modal-footer ">
+                <button type="button" class="btn text-white" data-bs-dismiss="modal" style="background-color: orange;">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Profile Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content w-75">
+            <div class="modal-header" style="background-color:orange">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="https://i.postimg.cc/bwWRRvkW/profile1.jpg" alt="" srcset="" class="w-50">
+                <div class="row">
+                    <div class="col-6">
+                        <h5 class="mt-2">User Name</h5>
+                        <hr>
+                        <h5 class="">Account Number</h5>
+                    </div>
+
+                    <div class="col-6">
+                        <h3 class="text-dark">{{name}}</h3>
+                        <hr>
+                        <h3 class="text-dark">{{acno}}</h3>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer ">
+                <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: yellowgreen;">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- money tranfer OFFCANVAS -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header" style="background-color:orange">
+        <h5 class="offcanvas-title text-white" id="offcanvasExampleLabel">Money Transfer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div>
+            <img src="https://i.postimg.cc/65r1LLGs/10107.jpg" alt="" srcset="" style="height: 200px;">
+        </div>
+
+    <div>
+        <h4 [ngClass]="msgClr?'s1':'s2'" class="text-center mt-3 mb-0">{{message}}</h4>
+    </div>
+
+        <form [formGroup]="moneyTransferForm" class="p-3 text-center">
+            <input formControlName="rAcno" id="rac" name="rAcno" type="text" placeholder="Recipient Account Number" class="form-control mt-3">
+            <div *ngIf="this.moneyTransferForm.get('rAcno')?.errors && this.moneyTransferForm.get('rAcno')?.touched">
+                <b><p class="text-danger">* Accept Only Numbers</p></b>
+              </div>
+
+            <input formControlName="amount" id="a1" name="amount" type="text" placeholder="Amount" class="form-control mt-3">
+            <div *ngIf="this.moneyTransferForm.get('amount')?.errors && this.moneyTransferForm.get('amount')?.touched">
+                <b><p class="text-danger">* Accept Only Numbers</p></b>
+              </div>
+
+            <input formControlName="psw" id="p1" name="psw" type="password" placeholder="PassWord" class="form-control mt-3">
+            <div *ngIf="this.moneyTransferForm.get('psw')?.errors && this.moneyTransferForm.get('psw')?.touched">
+                <b><p class="text-danger">* Accept Numbers and Characters Only</p></b>
+              </div>
+            <button (click)="moneyTransfer()" type="button" class="btn w-100 mt-3" id="mtbutton">Send Money</button>
+        </form>
+    </div>
+</div>
+
